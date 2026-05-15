@@ -13,15 +13,11 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [CompanyController::class, 'index'])->middleware('auth')->name('dashboard');
 
-Route::get('/login', function () {
-    return view('Auth.login');
-})->name('login');
+Route::view('/login','Auth.login')->name('login');
 
-Route::post('/authenticate', [UserController::class, 'Login'])->name('authenticate');
+Route::post('/authenticate', [AuthController::class, 'Login'])->name('authenticate');
 
-Route::post('/logout', [UserController::class, 'Logout'])->middleware('auth')->name('logout');
-
-Route::resource('/company', CompanyController::class)->middleware('auth');
+Route::post('/logout', [AuthController::class, 'Logout'])->middleware('auth')->name('logout');
 
 Route::view('/invite', 'invitation')->middleware('auth')->name('invite');
 
@@ -32,3 +28,6 @@ Route::post('/invitationAccept',[InvitationController::class, 'acceptInvitation'
 Route::view('/forget-password', 'Auth.forgetPassword')->name('forgetPassword');
 
 Route::post('/verify-forget-password',[AuthController::class,'forgetPassword'])->name('verifyforgetpassword');
+
+Route::resource('/user',UserController::class)->middleware('auth');
+Route::resource('/company', CompanyController::class)->middleware('auth');

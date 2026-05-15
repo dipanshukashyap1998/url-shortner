@@ -25,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'created_by'
     ];
 
     /**
@@ -60,8 +61,8 @@ class User extends Authenticatable
         return $this->hasMany(Company::class);
     }
 
-    public function company():BelongsTo
+    public function user():BelongsTo
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(User::class);
     }
 }

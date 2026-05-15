@@ -12,7 +12,7 @@
 
         <li class="nav-item mb-2">
             <a
-            {{-- href="{{ route('company.index') }}" --}}
+            href="{{ route('company.index') }}"
                class="nav-link text-white">
 
                 Companies
@@ -21,7 +21,7 @@
 
         <li class="nav-item mb-2">
             <a
-            {{-- href="{{ route('users.index') }}" --}}
+            href="{{ route('user.index') }}"
                class="nav-link text-white">
 
                 Users

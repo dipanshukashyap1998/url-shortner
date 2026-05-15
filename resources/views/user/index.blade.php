@@ -5,38 +5,38 @@
         <div class="row">
             <div class="col-12">
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-secondary" id="addCompanyButton">Add Company</button>
+                    <button class="btn btn-secondary" id="addUserButton">Add User</button>
                 </div>
             </div>
         </div>
         <div class="card my-2">
-            <div class="card-header">Clients</div>
+            <div class="card-header">Users</div>
             <div class="card-body">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">Sr No.</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Address</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Company</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($companies->isEmpty())
+                        @if ($users->isEmpty())
                             <tr>
                                 <td colspan="5" class="text-center">No companies found.</td>
                             </tr>
                         @endif
-                        @foreach ($companies as $company)
+                        @foreach ($users as $user)
                             <tr>
-                                <th scope="row">{{ $company->id }}</th>
-                                <td>{{ $company->name }}</td>
-                                <td>{{ $company->phone }}</td>
-                                <td>{{ $company->address }}</td>
+                                <th scope="row">{{ $user->id }}</th>
+                                <td>{{ $user->name ?? ""}}</td>
+                                <td>{{ $user->email ?? ""}}</td>
+                                <td>{{ $user->company->name ?? ""}}</td>
                                 <td>
                                     <button class="btn btn-sm btn-primary">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                    <button class="btn btn-sm btn-danger" @disabled(optional($user->roles->first()->name== 'superadmin'))>Delete</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -50,8 +50,8 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        document.getElementById('addCompanyButton').addEventListener('click', function() {
-            window.location.href = "{{ route('company.create') }}"
+        document.getElementById('addUserButton').addEventListener('click', function() {
+            window.location.href = "{{ route('user.create') }}"
         })
 
     });

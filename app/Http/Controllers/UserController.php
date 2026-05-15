@@ -2,27 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\AuthService;
-use App\Http\Requests\LoginRequest;
+use App\DTOs\UserDTO;
+use App\Http\Requests\UserRequest;
+use App\Services\UserService;
 use Illuminate\Http\Request;
+use App\Models\Role;
 
 class UserController extends Controller
 {
-    protected $authService;
+    protected $userService;
 
-    public function __construct(AuthService $authService)
+    public function __construct(UserService $userService)
     {
-        $this->authService = $authService;
-    }
-
-    public function Login(LoginRequest $request)
-    {
-        return $this->authService->login($request->email, $request->password);
-    }
-
-    public function Logout(Request $request)
-    {
-        return $this->authService->logout($request);
+        $this->userService = $userService;
     }
 
     /**
@@ -30,7 +22,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = $this->userService->getUsers();
+
+        return view('user.index',compact('users'));
     }
 
     /**
@@ -38,15 +32,21 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+
+        return view('user.create',compact('roles'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request, UserService $userService)
     {
-        //
+        $dto = UserDTO::fromRequest($request->validated());
+
+        $user = $userService->createUser($dto);
+
+        return redirect()->route('user.index')->with('success','User created successfully');
     }
 
     /**

@@ -19,7 +19,7 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $view = $request->view ?? null;
-        
+
         $companies = $this->companyService->getCompanies($view);
 
         if($view)
@@ -35,7 +35,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('company.create');
     }
 
     /**
