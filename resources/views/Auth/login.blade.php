@@ -48,6 +48,11 @@
                     Sign in
                 </button>
 
+                <!-- Register link -->
+                <div class="text-center">
+                    <p class="mb-0">Don't have an account? <a href="{{ route('register') }}" class="text-decoration-underline">Register here</a></p>
+                </div>
+
             </form>
         </div>
     </div>
