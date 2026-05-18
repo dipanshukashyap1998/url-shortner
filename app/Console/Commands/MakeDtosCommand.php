@@ -26,19 +26,29 @@ class MakeDtosCommand extends Command
      */
     public function handle()
     {
-        $module = strtolower($this->argument('name'));
+        $name = ucfirst($this->argument('name')); // Capitalize first letter for class name
+        $module = strtolower($this->argument('name')); // Lowercase for directory
 
-        $path = app_path("Dtos/$module");
+        $path = app_path("App/Models/DTOs/$module");
 
         if (!File::exists($path)) {
             File::makeDirectory($path, 0755, true);
         }
 
-         File::put(
-                "$path/$module.blade.php",
-                "<h1>$module page</h1>"
-            );
 
-        $this->info('Dtos created successfully.');
+        File::put(
+            app_path("App/Models/DTOs/{$module}.php"),
+            "<?php
+
+        namespace App\Models\DTOs;
+
+        class {$name}
+        {
+            // Add your DTO properties here
+        }
+        "
+        );
+
+        $this->info('DTO created successfully.');
     }
 }
