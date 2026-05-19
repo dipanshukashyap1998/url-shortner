@@ -1,12 +1,14 @@
 <?php
+
 namespace App\DTOs;
 
-class UserDTO
+class RegisterUserDTO
 {
     public function __construct(
-    public string $name,
-    public string $email,
-    public int $role_id,
+        public string $name,
+        public string $email,
+        public string $password,
+        public int $created_by
     )
     {}
 
@@ -15,8 +17,8 @@ class UserDTO
         return new self(
             name: $data['name'],
             email: $data['email'],
-            role_id : $data['role_id']
-            // created_by : $data['user_id']
+            password: $data['password'],
+            created_by : $data['user_id']
         );
     }
 }
