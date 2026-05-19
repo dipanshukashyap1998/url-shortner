@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\AuthService;
 use App\Http\Requests\LoginRequest;
-
+use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
 {
@@ -29,5 +29,11 @@ class AuthController extends Controller
     public function forgetPassword()
     {
 
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $credentials = $request->only('name', 'email', 'password');
+        return $this->authService->register($credentials);
     }
 }
