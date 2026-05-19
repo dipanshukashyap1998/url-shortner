@@ -12,10 +12,10 @@
 
                 <!-- Name input -->
                 <div class="mb-4">
-                    <input type="text" id="form2Example1" class="form-control" name="name" value="{{ old('name') }}" required autofocus />
                     <label class="form-label" for="form2Example1">
                         Full Name
                     </label>
+                    <input type="text" id="form2Example1" class="form-control" name="name" value="{{ old('name') }}" required autofocus />
                     @error('name')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                     @enderror
@@ -23,10 +23,10 @@
 
                 <!-- Email input -->
                 <div class="mb-4">
-                    <input type="email" id="form2Example2" class="form-control" name="email" value="{{ old('email') }}" required />
                     <label class="form-label" for="form2Example2">
                         Email address
                     </label>
+                    <input type="email" id="form2Example2" class="form-control" name="email" value="{{ old('email') }}" required />
                     @error('email')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                     @enderror
@@ -34,10 +34,10 @@
 
                 <!-- Password input -->
                 <div class="mb-4">
-                    <input type="password" id="form2Example3" class="form-control" name="password" required />
                     <label class="form-label" for="form2Example3">
                         Password
                     </label>
+                    <input type="password" id="form2Example3" class="form-control" name="password" required />
                     @error('password')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                     @enderror
@@ -45,10 +45,10 @@
 
                 <!-- Confirm Password input -->
                 <div class="mb-4">
-                    <input type="password" id="form2Example4" class="form-control" name="password_confirmation" required />
                     <label class="form-label" for="form2Example4">
                         Confirm Password
                     </label>
+                    <input type="password" id="form2Example4" class="form-control" name="password_confirmation" required />
                     @error('password_confirmation')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                     @enderror

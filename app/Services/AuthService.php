@@ -19,9 +19,23 @@ class AuthService
         }
     }
 
-    public function register($name, $email, $password)
+    public function register($credentials)
     {
-        // Implement your registration logic here
+        $email = $credentials['email'];
+        $name = $credentials['name'];
+        $password = $credentials['password'];
+
+        if(User::whereEmail($email)->exists()){
+            return back()->withErrors(['email' => 'Email already exists.']);
+        }
+
+        $user = User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password),
+        ]);
+
+        return redirect()->route('login')->with('success', 'Registration successful. Please login.');
     }
 
     public function logout(Request $request)

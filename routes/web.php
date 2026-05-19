@@ -14,6 +14,8 @@ Route::get('/', function () {
 Route::get('/dashboard', [CompanyController::class, 'index'])->middleware('auth')->name('dashboard');
 
 Route::view('/login','Auth.login')->name('login');
+Route::view('/register','Auth.register')->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.perform');
 
 Route::post('/authenticate', [AuthController::class, 'Login'])->name('authenticate');
 
