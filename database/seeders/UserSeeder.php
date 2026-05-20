@@ -20,12 +20,16 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            \App\Models\User::firstOrCreate(['email' => $user['email']], $user);
+            $createdUser = \App\Models\User::firstOrCreate(['email' => $user['email']], $user);
         }
 
-        $role = DB::table('role_user')->insert([
-            'user_id' => 1,
-            'role_id' => 1,
-        ]);
+        $superadminRoleId = DB::table('roles')->where('name', 'superadmin')->value('id');
+
+        if (isset($createdUser) && $superadminRoleId) {
+            DB::table('role_user')->updateOrInsert([
+                'user_id' => $createdUser->id,
+                'role_id' => $superadminRoleId,
+            ]);
+        }
     }
 }
