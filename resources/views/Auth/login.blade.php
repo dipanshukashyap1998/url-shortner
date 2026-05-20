@@ -12,18 +12,18 @@
 
                 <!-- Email input -->
                 <div class="mb-4">
-                    <input type="email" id="form2Example1" class="form-control" name="email" />
                     <label class="form-label" for="form2Example1">
                         Email address
                     </label>
+                    <input type="email" id="form2Example1" class="form-control" name="email" />
                 </div>
 
                 <!-- Password input -->
                 <div class="mb-4">
-                    <input type="password" id="form2Example2" class="form-control" name="password" />
                     <label class="form-label" for="form2Example2">
                         Password
                     </label>
+                    <input type="password" id="form2Example2" class="form-control" name="password" />
                 </div>
 
                 <!-- Remember me -->
