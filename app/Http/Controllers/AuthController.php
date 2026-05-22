@@ -34,6 +34,7 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         $credentials = $request->only('name', 'email', 'password');
+        
         return $this->authService->register($credentials);
     }
 }

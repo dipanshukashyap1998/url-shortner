@@ -65,5 +65,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User::class);
     }
-    
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->roles->contains('name', 'superadmin');
+    }
 }

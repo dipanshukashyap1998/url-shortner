@@ -1,6 +1,14 @@
 @extends('layouts.auth')
 
 @section('content')
+    <div>
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+    </div>
     <div class="container bg-gradient d-flex align-items-center justify-content-center" style="min-height: 100vh">
         <div class="card shadow-lg p-4" style="width: 400px">
             <form action="{{ route('register.perform') }}" method="POST">
@@ -15,7 +23,8 @@
                     <label class="form-label" for="form2Example1">
                         Full Name
                     </label>
-                    <input type="text" id="form2Example1" class="form-control" name="name" value="{{ old('name') }}" required autofocus />
+                    <input type="text" id="form2Example1" class="form-control" name="name" value="{{ old('name') }}"
+                        required autofocus />
                     @error('name')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                     @enderror
@@ -26,7 +35,8 @@
                     <label class="form-label" for="form2Example2">
                         Email address
                     </label>
-                    <input type="email" id="form2Example2" class="form-control" name="email" value="{{ old('email') }}" required />
+                    <input type="email" id="form2Example2" class="form-control" name="email" value="{{ old('email') }}"
+                        required />
                     @error('email')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                     @enderror
@@ -61,7 +71,8 @@
             </form>
 
             <div class="text-center">
-                <p class="mb-0">Already have an account? <a href="{{ route('login') }}" class="text-decoration-underline">Login here</a></p>
+                <p class="mb-0">Already have an account? <a href="{{ route('login') }}"
+                        class="text-decoration-underline">Login here</a></p>
             </div>
         </div>
     </div>
