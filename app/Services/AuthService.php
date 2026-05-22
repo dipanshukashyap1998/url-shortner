@@ -35,7 +35,9 @@ class AuthService
             'password' => Hash::make($password),
         ]);
 
-        return redirect()->route('login')->with('success', 'Registration successful. Please login.');
+        session()->flash('success', 'Your account has been created successfully! Please login to continue.');
+
+        return redirect()->route('login');
     }
 
     public function logout(Request $request)

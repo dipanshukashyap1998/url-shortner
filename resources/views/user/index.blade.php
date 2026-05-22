@@ -36,7 +36,7 @@
                                 <td>{{ $user->company->name ?? ""}}</td>
                                 <td>
                                     <button class="btn btn-sm btn-primary">Edit</button>
-                                    <button class="btn btn-sm btn-danger" @disabled(optional($user->roles->first()->name== 'superadmin'))>Delete</button>
+                                    <button class="btn btn-sm btn-danger" @disabled(!$user->isSuperAdmin())>Delete</button>
                                 </td>
                             </tr>
                         @endforeach
